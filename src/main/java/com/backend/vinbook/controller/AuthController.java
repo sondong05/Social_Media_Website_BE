@@ -3,6 +3,7 @@ package com.backend.vinbook.controller;
 import com.backend.vinbook.dto.LoginDTO;
 import com.backend.vinbook.dto.UserDTO;
 import com.backend.vinbook.jwt.JwtUtil;
+import com.backend.vinbook.service.AuthService;
 import com.backend.vinbook.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,22 +32,13 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final UserService userService;
+    private final AuthService authService;
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody LoginDTO loginDTO) {
 
         log.info(loginDTO.getUsername());
         log.info(loginDTO.getPassword());
-        try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginDTO.getUsername(),
-                            loginDTO.getPassword())
-            );
-
-        } catch (AuthenticationException e) {
-            throw new RuntimeException("Loi");
-        }
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(loginDTO.getUsername());
-        final  String jwt = jwtUtil.generateToken(userDetails);
+        String jwt  = authService.login(loginDTO);
         return new ResponseEntity<>(jwt, HttpStatus.OK);
 
     }

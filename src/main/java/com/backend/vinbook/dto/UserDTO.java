@@ -55,4 +55,5 @@ public class UserDTO {
         user.setFirstLogin(this.isFirstLogin);
         return user;
     }
+
 }

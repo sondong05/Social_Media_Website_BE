@@ -29,16 +29,18 @@ public class User {
     private boolean isFirstLogin = true;
 
     public UserDTO toDTO() {
-        return new UserDTO(
-                this.id,
-                this.username,
-                password,
-                this.email,
-                this.fullName,
-                this.gender,
-                this.birthDate,
-                this.role,
-                this.isFirstLogin
-        );
+        return UserDTO.builder()
+                .id(this.id)
+                .username(this.username)
+                .email(this.email)
+                .fullName(fullName)
+                .password(this.password)
+                .role(this.role)
+                .gender(gender)
+                .birthDate(this.birthDate)
+                .isFirstLogin(isFirstLogin)
+                .build();
     }
+
+
 }
