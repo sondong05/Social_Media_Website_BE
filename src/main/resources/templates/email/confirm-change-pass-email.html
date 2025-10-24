@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Yêu cầu Đặt lại Mật khẩu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: Arial, sans-serif;">
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td style="padding: 20px 0;">
+
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse; background-color: #ffffff; border: 1px solid #cccccc; border-radius: 8px; overflow: hidden;">
+
+                <tr>
+                    <td align="center" style="padding: 40px 30px 30px 30px; background-color: #007bff; color: #ffffff;">
+                        <h1 style="margin: 0; font-size: 28px; font-weight: bold;">Xác Nhận Đặt Lại Mật Khẩu</h1>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="padding: 40px 30px 40px 30px; color: #333333; font-size: 16px; line-height: 1.6;">
+
+                        <p style="margin: 0 0 20px 0;">
+                            Xin chào, <strong th:text="${username}">Người dùng</strong>,
+                        </p>
+
+                        <p style="margin: 0 0 25px 0;">
+                            Chúng tôi nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn.
+                            Vui lòng nhấp vào nút bên dưới để thiết lập mật khẩu mới.
+                        </p>
+
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td align="center" style="padding: 10px 0 25px 0;">
+                                    <a th:href="${resetLink}" target="_blank" style="background-color: #007bff; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 16px; display: inline-block;">
+                                        Đặt Lại Mật Khẩu
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+
+<!--                        <p style="margin: 0 0 20px 0;">-->
+<!--                            Liên kết này sẽ hết hạn trong <strong th:text="${expirationTime}">[Thời gian]</strong>.-->
+<!--                        </p>-->
+
+                        <p style="margin: 0;">
+                            Nếu bạn không yêu cầu thay đổi này, vui lòng bỏ qua email này. Tài khoản của bạn vẫn được bảo vệ.
+                        </p>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="padding: 30px; background-color: #f9f9f9; text-align: center; color: #888888; font-size: 12px;">
+                        <p style="margin: 0;">&copy; 2025 [Tên Công Ty Của Bạn]. Mọi quyền được bảo lưu.</p>
+                        <p style="margin: 5px 0 0 0;">[Địa chỉ công ty của bạn]</p>
+                    </td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

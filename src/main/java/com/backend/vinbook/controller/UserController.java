@@ -1,6 +1,8 @@
 package com.backend.vinbook.controller;
 
 import com.backend.vinbook.dto.ChangePasswordDTO;
+import com.backend.vinbook.dto.ForgotPasswordDTO;
+import com.backend.vinbook.service.EmailService;
 import com.backend.vinbook.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/account")
@@ -23,6 +27,18 @@ public class UserController {
         try {
             userService.changePassword(changePasswordDTO);
             return ResponseEntity.ok("Đổi mật khẩu thành công!");
+        } catch (IllegalArgumentException e) {
+            // Bắt các lỗi validation logic từ service và trả về lỗi 400
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<String> forgotPassword(@RequestBody @Valid ForgotPasswordDTO email) {
+
+        try {
+            userService.sendEmailToChangePass(email);
+            return ResponseEntity.ok("Gửi mail thành công");
         } catch (IllegalArgumentException e) {
             // Bắt các lỗi validation logic từ service và trả về lỗi 400
             return ResponseEntity.badRequest().body(e.getMessage());
