@@ -2,6 +2,7 @@ package com.backend.vinbook.service;
 
 import com.backend.vinbook.dto.ChangePasswordDTO;
 import com.backend.vinbook.dto.ForgotPasswordDTO;
+import com.backend.vinbook.dto.ResetPasswordDTO;
 import com.backend.vinbook.dto.UserDTO;
 import com.backend.vinbook.entity.User;
 
@@ -10,4 +11,6 @@ public interface UserService {
     UserDTO getUser(String username);
     void changePassword(ChangePasswordDTO dto);
     void sendEmailToChangePass(ForgotPasswordDTO email);
+
+    void updatePassword(ResetPasswordDTO resetPasswordDTO);
 }

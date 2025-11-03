@@ -1,8 +1,9 @@
-package com.backend.vinbook.service;
+package com.backend.vinbook.service.impl;
 
 import com.backend.vinbook.dto.LoginDTO;
 import com.backend.vinbook.jwt.JwtUtil;
 import com.backend.vinbook.repository.UserRepository;
+import com.backend.vinbook.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuthServiceImpl implements AuthService{
+public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authManager;
     private final JwtUtil jwtUtil;
     private final UserDetailsService userDetailsService;

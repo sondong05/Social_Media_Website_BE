@@ -1,5 +1,6 @@
-package com.backend.vinbook.service;
+package com.backend.vinbook.service.impl;
 
+import com.backend.vinbook.service.EmailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class EmailServiceImpl implements EmailService{
+public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender mailSender;
     private final TemplateEngine templateEngine;

@@ -1,9 +1,10 @@
-package com.backend.vinbook.service;
+package com.backend.vinbook.service.impl;
 
 import com.backend.vinbook.dto.ProfileDTO;
 import com.backend.vinbook.dto.UpdateProfileDTO;
 import com.backend.vinbook.entity.Profile;
 import com.backend.vinbook.repository.ProfileRepository;
+import com.backend.vinbook.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ProfileServiceImpl implements ProfileService{
+public class ProfileServiceImpl implements ProfileService {
     private final ProfileRepository profileRepository;
     @Override
     public void updateProfile(UpdateProfileDTO updateProfileDTO) {
