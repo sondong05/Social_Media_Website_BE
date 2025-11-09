@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -33,6 +34,12 @@ public class AuthController {
     private final JwtUtil jwtUtil;
     private final UserService userService;
     private final AuthService authService;
+    @PostMapping("/register")
+    public ResponseEntity<String> registerUser(@RequestBody @Valid UserDTO userDTO) {
+        userService.registerUser(userDTO);
+        return new ResponseEntity<>(("Account created"), HttpStatus.CREATED);
+
+    }
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody LoginDTO loginDTO) {
 
