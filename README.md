@@ -27,7 +27,7 @@ Dự án sử dụng kiến trúc **Microservices** đơn giản/kiến trúc **
 
 * **Frontend:** Giao diện người dùng được xây dựng hoàn toàn bằng **ReactJS**, chịu trách nhiệm hiển thị dữ liệu và xử lý tương tác của người dùng.
 * **Backend:** Sử dụng **Java Spring Boot**, cung cấp các **API REST** để xử lý logic kinh doanh, xác thực người dùng, và quản lý dữ liệu.
-* **Database:** [PostgreSQL/MySQL] được sử dụng để lưu trữ dữ liệu người dùng, bài đăng, lượt thích và bình luận.
+* **Database:** **MySQL** được sử dụng để lưu trữ dữ liệu người dùng, bài đăng, lượt thích và bình luận.
 * **Deployment:** Sử dụng **Docker** để đóng gói và triển khai ứng dụng.
 
 ---
