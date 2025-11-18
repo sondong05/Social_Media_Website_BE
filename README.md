@@ -36,7 +36,7 @@ Dự án sử dụng kiến trúc **Microservices** đơn giản/kiến trúc **
 | Hạng Mục | Công Nghệ | Phiên Bản | Mô Tả |
 | :--- | :--- | :--- | :--- |
 | **Frontend** | **ReactJS** | 18+ | Xây dựng giao diện người dùng. |
-| | HTML5/CSS3/JavaScript | ES6+ | Cấu trúc và logic cơ bản. |
+| | **HTML5/CSS3/JavaScript** | ES6+ | Cấu trúc và logic cơ bản. |
 | **Backend** | **Java Spring Boot** | 3.x+ | Xây dựng API mạnh mẽ và bảo mật. |
 | | **Spring Data JPA** | 3.x+ | Tương tác với cơ sở dữ liệu. |
 | | **Spring Security** | 6.x+ | Quản lý xác thực và ủy quyền. |
