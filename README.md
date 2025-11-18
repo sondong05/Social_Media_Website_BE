@@ -9,7 +9,6 @@
 * **Quản Lý Tài Khoản Người Dùng:**
     * Đăng ký tài khoản mới với xác thực email/tên người dùng.
     * Đăng nhập/Đăng xuất an toàn.
-    * Cập nhật và quản lý hồ sơ cá nhân (ảnh đại diện, tiểu sử).
 * **Quản Lý Bài Đăng (Post):**
     * Tạo, chỉnh sửa và xóa bài đăng (bao gồm văn bản và hình ảnh).
     * Xem **News Feed** hiển thị các bài đăng mới nhất từ bạn bè.
