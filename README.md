@@ -1,4 +1,4 @@
-# 🌐 [VINBOOK]
+# 🌐 VINBOOK
 
 ## ✨ Tổng Quan Dự Án
 
