@@ -46,3 +46,34 @@ Dự án sử dụng kiến trúc **Microservices** đơn giản/kiến trúc **
 | **Testing** | **Postman** | - | Kiểm thử API Backend. |
 
 ---
+
+## 🤝 Đóng Góp (Contributing)
+
+Mọi sự đóng góp đều được chào đón và đánh giá cao! Nếu bạn có đề xuất cải tiến, phát hiện lỗi hoặc muốn bổ sung tính năng, vui lòng làm theo quy trình sau:
+
+1.  **Fork** Repository này về tài khoản GitHub của bạn.
+2.  Tạo một **Branch** mới cho tính năng hoặc sửa lỗi của bạn: 
+    ```bash
+    git checkout -b feature/tinh-nang-moi
+    # hoặc
+    git checkout -b fix/sua-loi-dang-nhap
+    ```
+3.  **Commit** các thay đổi của bạn với thông điệp rõ ràng: 
+    ```bash
+    git commit -m 'feat: Thêm chức năng chia sẻ bài viết'
+    # hoặc
+    git commit -m 'fix: Khắc phục lỗi hiển thị avatar'
+    ```
+4.  **Push** lên Branch bạn vừa tạo: 
+    ```bash
+    git push origin feature/tinh-nang-moi
+    ```
+5.  Mở một **Pull Request (PR)** đến branch `main` (hoặc `master`) của repository gốc. Vui lòng mô tả chi tiết các thay đổi trong PR.
+
+---
+
+## 📄 Giấy Phép (License)
+
+Dự án này được phân phối dưới giấy phép **MIT License**. Điều này có nghĩa là bạn được tự do sử dụng, sao chép, sửa đổi, hợp nhất, xuất bản, phân phối và cấp phép lại (sublicense) phần mềm này, miễn là bạn giữ lại thông báo bản quyền và giấy phép ban đầu.
+
+Để biết thêm chi tiết, vui lòng xem nội dung đầy đủ của [MIT License tại đây](https://opensource.org/licenses/MIT) hoặc đoạn trích sau:
