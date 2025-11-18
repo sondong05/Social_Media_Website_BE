@@ -33,11 +33,3 @@ Dự án sử dụng kiến trúc **Microservices** đơn giản/kiến trúc **
 ---
 
 
-
----
-
-
-
-```bash
-git clone [https://github.com/TênTàiKhoảnCủaBạn/TênRepoCủaBạn.git](https://github.com/TênTàiKhoảnCủaBạn/TênRepoCủaBạn.git)
-cd TênRepoCủaBạn
