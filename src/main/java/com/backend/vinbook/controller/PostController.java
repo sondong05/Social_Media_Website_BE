@@ -1,5 +1,6 @@
 package com.backend.vinbook.controller;
 
+import com.backend.vinbook.dto.PostDTO;
 import com.backend.vinbook.entity.Post;
 import com.backend.vinbook.service.PostService;
 import org.springframework.web.bind.annotation.*;
@@ -32,5 +33,14 @@ public class PostController {
     @DeleteMapping("/{id}")
     public void deletePost(@PathVariable Long id) {
         postService.deletePost(id);
+    }
+    
+    @GetMapping("/me")
+    public List<Post> getMyPosts(@PathVariable long userId){
+    	return postService.getMyPosts(userId);
+    }
+    @GetMapping("/user/{userId}")
+    public List<Post> getOtherPosts(@PathVariable long userId){
+    	return postService.getOtherPosts(userId);
     }
 }
