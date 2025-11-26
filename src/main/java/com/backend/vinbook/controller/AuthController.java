@@ -42,10 +42,9 @@ public class AuthController {
     }
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody LoginDTO loginDTO) {
-gi
         log.info(loginDTO.getUsername());
         log.info(loginDTO.getPassword());
-        String jwt  = authService.login(loginDTO);
+        String jwt  = authService.login(loginDTO);git
         return new ResponseEntity<>(jwt, HttpStatus.OK);
 
     }

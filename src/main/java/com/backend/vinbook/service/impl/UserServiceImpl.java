@@ -34,23 +34,29 @@ public class UserServiceImpl implements UserService {
     private final OtpService otpService;
     @Override
     public void registerUser(UserDTO userDTO) {
+        // 1. Kiểm tra Username tồn tại
         Optional<User> opt = userRepository.findByUsername(userDTO.getUsername());
-
         if (opt.isPresent()) {
             throw new RuntimeException("Username đã tồn tại");
         }
 
-
-
+        // 2. Mã hóa mật khẩu
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 
+        // 3. Tạo và lưu Profile trước
         Profile profile = Profile.builder()
                 .email(userDTO.getEmail())
                 .fullName(userDTO.getFullName())
                 .username(userDTO.getUsername())
                 .build();
         profileRepository.save(profile);
-        userRepository.save(userDTO.toEntity());
+
+        // 4. SỬA LỖI: Tạo User entity và set ID = null
+        User newUser = userDTO.toEntity();
+        newUser.setId(null); // <--- Quan trọng: Bắt buộc set null để Hibernate hiểu là INSERT
+
+        // 5. Lưu User vào DB
+        userRepository.save(newUser);
     }
 
     @Override
