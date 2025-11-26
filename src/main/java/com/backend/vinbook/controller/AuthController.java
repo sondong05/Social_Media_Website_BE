@@ -44,7 +44,7 @@ public class AuthController {
     public ResponseEntity<String> loginUser(@RequestBody LoginDTO loginDTO) {
         log.info(loginDTO.getUsername());
         log.info(loginDTO.getPassword());
-        String jwt  = authService.login(loginDTO);git
+        String jwt  = authService.login(loginDTO);
         return new ResponseEntity<>(jwt, HttpStatus.OK);
 
     }
