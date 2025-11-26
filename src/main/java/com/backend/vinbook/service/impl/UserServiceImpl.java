@@ -5,6 +5,7 @@ import com.backend.vinbook.dto.ForgotPasswordDTO;
 import com.backend.vinbook.dto.ResetPasswordDTO;
 import com.backend.vinbook.dto.UserDTO;
 import com.backend.vinbook.entity.Profile;
+import com.backend.vinbook.entity.Role;
 import com.backend.vinbook.entity.User;
 import com.backend.vinbook.repository.ProfileRepository;
 import com.backend.vinbook.repository.UserRepository;
@@ -32,16 +33,18 @@ public class UserServiceImpl implements UserService {
     private final ProfileRepository profileRepository;
     private final OtpService otpService;
     @Override
-    @PreAuthorize("hasRole('ADMIN')")
     public void registerUser(UserDTO userDTO) {
         Optional<User> opt = userRepository.findByUsername(userDTO.getUsername());
 
         if (opt.isPresent()) {
             throw new RuntimeException("Username đã tồn tại");
         }
-        // đảm bảo role cố định là USER (admin không thể tạo admin qua endpoint này)
-//        userDTO.setRole(Role.USER);
+
+        // 2. THÊM/BỎ COMMENT DÒNG NÀY: Gán mặc định là USER
+        userDTO.setRole(Role.USER);
+
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+
         Profile profile = Profile.builder()
                 .email(userDTO.getEmail())
                 .fullName(userDTO.getFullName())

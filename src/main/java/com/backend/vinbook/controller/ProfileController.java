@@ -29,9 +29,7 @@ public class ProfileController {
 
     @GetMapping("/detail")
     public ResponseEntity<ProfileDTO> getProfile() {
-
-            profileService.getProfile();
-            return ResponseEntity.ok(profileService.getProfile());
-
+        // Chỉ gọi 1 lần và trả về kết quả ngay
+        return ResponseEntity.ok(profileService.getProfile());
     }
 }
