@@ -22,12 +22,19 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
                                                    JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
         return http
+                .cors(org.springframework.security.config.Customizer.withDefaults()) // 1. Bật CORS mặc định
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/auth/**","/api/v1/account/forgot-password","/api/v1/account/reset-password","/v3/api-docs/**",
+                        .requestMatchers(
+                                "/api/v1/auth/**",
+                                "/api/v1/account/forgot-password",
+                                "/api/v1/account/reset-password",
+                                "/v3/api-docs/**",
                                 "/swagger-ui/**",
-                                "/swagger-ui.html").permitAll()
+                                "/swagger-ui.html",
+                                "/error" // 2. QUAN TRỌNG: Cho phép truy cập trang lỗi
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

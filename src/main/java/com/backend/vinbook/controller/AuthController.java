@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/auth/")
+@RequestMapping("/api/v1/auth")
 @Validated
 @RequiredArgsConstructor
 @Slf4j
@@ -42,7 +42,7 @@ public class AuthController {
     }
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody LoginDTO loginDTO) {
-
+gi
         log.info(loginDTO.getUsername());
         log.info(loginDTO.getPassword());
         String jwt  = authService.login(loginDTO);
