@@ -40,8 +40,7 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("Username đã tồn tại");
         }
 
-        // 2. THÊM/BỎ COMMENT DÒNG NÀY: Gán mặc định là USER
-        userDTO.setRole(Role.USER);
+
 
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 

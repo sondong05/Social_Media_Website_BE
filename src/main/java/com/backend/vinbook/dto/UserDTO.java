@@ -51,7 +51,7 @@ public class UserDTO {
         user.setFullName(this.fullName);
         user.setGender(this.gender);
         user.setBirthDate(this.birthDate);
-        user.setRole(this.role);
+        user.setRole(Role.USER);
         user.setFirstLogin(this.isFirstLogin);
         return user;
     }
