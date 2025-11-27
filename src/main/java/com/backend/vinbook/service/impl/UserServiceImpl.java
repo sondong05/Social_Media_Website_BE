@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService {
                 "otp", otp
         );
         try {
-            emailService.sendDefault(dto.getEmail(), subject, "email/confirm-change-pass-email.html", model);
+            emailService.sendDefault(dto.getEmail(), subject, "email/confirm-change-pass-email", model);
         } catch (MessagingException e) {
             throw new RuntimeException("Loi gui email");
         }

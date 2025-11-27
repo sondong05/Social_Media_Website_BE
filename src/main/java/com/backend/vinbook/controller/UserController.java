@@ -40,6 +40,11 @@ public class UserController {
             // Bắt các lỗi validation logic từ service và trả về lỗi 400
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+        catch (Exception e) {
+            // Log lỗi ra console để debug trên Render
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body("Lỗi hệ thống: " + e.getMessage());
+        }
     }
 
     @PostMapping("/reset-password")
