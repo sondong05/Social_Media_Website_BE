@@ -33,8 +33,12 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody @Valid UserDTO userDTO) {
-        userService.registerUser(userDTO);
-        return new ResponseEntity<>(("Tạo tài khoản thành công"), HttpStatus.CREATED);
+        try {
+            userService.registerUser(userDTO);
+            return new ResponseEntity<>("Tạo tài khoản thành công", HttpStatus.CREATED);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage()); // Sẽ trả về "Username đã tồn tại" với status 400
+        }
     }
 
     @PostMapping("/login")
