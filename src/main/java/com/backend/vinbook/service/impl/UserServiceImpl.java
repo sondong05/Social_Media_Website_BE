@@ -121,20 +121,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updatePassword(ResetPasswordDTO resetPasswordDTO) {
+        // 1. Kiểm tra OTP
         boolean verified = otpService.verifyOtp(resetPasswordDTO.getEmail(), resetPasswordDTO.getOtp());
-        log.info("Otp bi loi gi {}",verified );
         if (!verified) {
-            throw new RuntimeException("OTP ko hop le");
+            // Cập nhật thông báo OTP
+            throw new IllegalArgumentException("Mã OTP không chính xác hoặc đã hết hạn. Vui lòng kiểm tra lại hoặc yêu cầu gửi lại mã.");
         }
+
+        // 2. Kiểm tra Email
         User currentUser = userRepository.findByEmail(resetPasswordDTO.getEmail())
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy người dùng"));
+                // Cập nhật thông báo Email
+                .orElseThrow(() -> new IllegalArgumentException("Email không tồn tại trong hệ thống"));
+
+        // 3. Kiểm tra mật khẩu khớp nhau
         if (!resetPasswordDTO.getNewPassword().equals(resetPasswordDTO.getConfirmNewPassword())) {
-            throw new RuntimeException("Nhap lai mat khau sai");
+            // Cập nhật thông báo mật khẩu
+            throw new IllegalArgumentException("Mật khẩu xác nhận không trùng khớp");
         }
+
         String encodedPassword = passwordEncoder.encode(resetPasswordDTO.getNewPassword());
         currentUser.setPassword(encodedPassword);
         userRepository.save(currentUser);
-
     }
 
 
