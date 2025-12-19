@@ -49,8 +49,20 @@ public class UserController {
 
     @PostMapping("/reset-password")
     public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordDTO dto) {
-        userService.updatePassword(dto);
-        return ResponseEntity.ok("Đổi mật khẩu thành công!");
+        try {
+            // Gọi service xử lý logic
+            userService.updatePassword(dto);
+            return ResponseEntity.ok("Đổi mật khẩu thành công!");
+
+        } catch (IllegalArgumentException e) {
+            // QUAN TRỌNG: Bắt lỗi IllegalArgumentException từ Service (Email ko tồn tại, sai OTP...)
+            // Và trả về 400 Bad Request kèm message
+            return ResponseEntity.badRequest().body(e.getMessage());
+
+        } catch (Exception e) {
+            // Dự phòng cho các lỗi hệ thống khác không lường trước được
+            return ResponseEntity.internalServerError().body("Lỗi hệ thống: " + e.getMessage());
+        }
     }
 
 
