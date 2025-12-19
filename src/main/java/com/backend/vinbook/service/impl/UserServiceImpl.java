@@ -121,17 +121,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updatePassword(ResetPasswordDTO resetPasswordDTO) {
-        // 1. Kiểm tra OTP
+        // 1. Kiểm tra Email
+        User currentUser = userRepository.findByEmail(resetPasswordDTO.getEmail())
+                // Cập nhật thông báo Email
+                .orElseThrow(() -> new IllegalArgumentException("Email không tồn tại trong hệ thống"));
+
+        // 2. Kiểm tra OTP
         boolean verified = otpService.verifyOtp(resetPasswordDTO.getEmail(), resetPasswordDTO.getOtp());
         if (!verified) {
             // Cập nhật thông báo OTP
             throw new IllegalArgumentException("Mã OTP không chính xác hoặc đã hết hạn. Vui lòng kiểm tra lại hoặc yêu cầu gửi lại mã.");
         }
 
-        // 2. Kiểm tra Email
-        User currentUser = userRepository.findByEmail(resetPasswordDTO.getEmail())
-                // Cập nhật thông báo Email
-                .orElseThrow(() -> new IllegalArgumentException("Email không tồn tại trong hệ thống"));
+
 
         // 3. Kiểm tra mật khẩu khớp nhau
         if (!resetPasswordDTO.getNewPassword().equals(resetPasswordDTO.getConfirmNewPassword())) {
