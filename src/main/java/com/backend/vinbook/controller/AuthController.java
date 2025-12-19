@@ -10,11 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,25 +24,30 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @RequiredArgsConstructor
 @Slf4j
-
 public class AuthController {
     private final UserDetailsService userDetailsService;
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final UserService userService;
     private final AuthService authService;
+
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody @Valid UserDTO userDTO) {
         userService.registerUser(userDTO);
-        return new ResponseEntity<>(("Account created"), HttpStatus.CREATED);
-
+        return new ResponseEntity<>(("Tạo tài khoản thành công"), HttpStatus.CREATED);
     }
-    @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody LoginDTO loginDTO) {
-        log.info(loginDTO.getUsername());
-        log.info(loginDTO.getPassword());
-        String jwt  = authService.login(loginDTO);
-        return new ResponseEntity<>(jwt, HttpStatus.OK);
 
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUser(@RequestBody @Valid LoginDTO loginDTO) {
+        log.info(loginDTO.getUsername());
+        // log.info(loginDTO.getPassword()); // Nên hạn chế log password plaintext
+
+        try {
+            String jwt = authService.login(loginDTO);
+            return new ResponseEntity<>(jwt, HttpStatus.OK);
+        } catch (AuthenticationException e) {
+            // Bắt lỗi khi username hoặc password sai
+            return ResponseEntity.badRequest().body("Thông tin đăng nhập không chính xác");
+        }
     }
 }

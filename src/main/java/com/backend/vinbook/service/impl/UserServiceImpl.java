@@ -48,6 +48,8 @@ public class UserServiceImpl implements UserService {
                 .email(userDTO.getEmail())
                 .fullName(userDTO.getFullName())
                 .username(userDTO.getUsername())
+                .gender(userDTO.getGender())
+                .birthDate(userDTO.getBirthDate())
                 .build();
         profileRepository.save(profile);
 
