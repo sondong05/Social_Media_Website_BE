@@ -20,43 +20,6 @@ public class VinbookApplication {
 		SpringApplication.run(VinbookApplication.class, args);
 	}
 
-    @Bean
-    public CommandLineRunner initAdminAccount(UserRepository userRepository,
-                                              ProfileRepository profileRepository,
-                                              PasswordEncoder passwordEncoder) {
-        return args -> {
-            // Kiểm tra xem admin đã tồn tại chưa
-            if (!userRepository.existsByUsername("admin")) {
 
-                String adminUsername = "admin";
-                String adminEmail = "admin@vinbook.com";
-                String rawPassword = "Admin@123";
-                // 1. Tạo Profile cho Admin
-                Profile profile = Profile.builder()
-                        .username(adminUsername)
-                        .email(adminEmail)
-                        .fullName("Nguyễn Đông")
-                        .gender("Male")
-                        .birthDate(LocalDate.now())
-                        .build();
-                profileRepository.save(profile);
-
-                // 2. Tạo User Admin
-                User admin = new User();
-                admin.setUsername(adminUsername);
-                admin.setEmail(adminEmail);
-                admin.setPassword(passwordEncoder.encode(rawPassword)); // Mã hóa mật khẩu
-                admin.setFullName("Nguyễn Đông");
-                admin.setGender("Male");
-                admin.setBirthDate(LocalDate.now());
-                admin.setRole(Role.ADMIN);
-                admin.setFirstLogin(false); // Admin không cần đổi pass lần đầu
-
-                userRepository.save(admin);
-
-                System.out.println(">>> Đã tạo tài khoản ADMIN mặc định: admin / " + rawPassword);
-            }
-        };
-    }
 
 }
