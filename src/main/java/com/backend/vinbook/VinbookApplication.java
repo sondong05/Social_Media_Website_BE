@@ -36,7 +36,7 @@ public class VinbookApplication {
                         .username(adminUsername)
                         .email(adminEmail)
                         .fullName("Nguyễn Đông")
-                        .gender("Nam")
+                        .gender("Male")
                         .birthDate(LocalDate.now())
                         .build();
                 profileRepository.save(profile);
@@ -47,7 +47,7 @@ public class VinbookApplication {
                 admin.setEmail(adminEmail);
                 admin.setPassword(passwordEncoder.encode(rawPassword)); // Mã hóa mật khẩu
                 admin.setFullName("Nguyễn Đông");
-                admin.setGender("Nam");
+                admin.setGender("Male");
                 admin.setBirthDate(LocalDate.now());
                 admin.setRole(Role.ADMIN);
                 admin.setFirstLogin(false); // Admin không cần đổi pass lần đầu
